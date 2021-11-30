@@ -1,0 +1,15 @@
+
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ÑšŸ˜
+N	java:S106"9Replace this use of System.out or System.err by a logger.(Õí¢õ
+S	java:S106'"9Replace this use of System.out or System.err by a logger.(™†ûÿÿÿÿ
+U	java:S106)"9Replace this use of System.out or System.err by a logger.(”ù«Ù8ÃØå¢Õ/
+Z	java:S106-"9Replace this use of System.out or System.err by a logger.(ß­¾íüÿÿÿÿ8ÅØå¢Õ/
+Q	java:S1259"<This block of commented-out lines of code should be removed.(Ÿ®ï
+a
+java:S1128"?Remove this unused import 'org.aspectj.lang.annotation.Before'.(™ Ş¡ÿÿÿÿÿ8Ì¤ç¢Õ/
+g
+java:S1128	"ERemove this unused import 'org.aspectj.lang.reflect.MethodSignature'.(÷¨­öÿÿÿÿÿ8Ì¤ç¢Õ/
+h
+java:S1128"FRemove this unused import 'javax.management.relation.RelationSupport'.(ğÛê“øÿÿÿÿ8Í¤ç¢Õ/
+O
+java:S1128"-Remove this unused import 'java.util.Locale'.(åğ×±ûÿÿÿÿ8Î¤ç¢Õ/

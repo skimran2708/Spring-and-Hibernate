@@ -1,0 +1,25 @@
+
+`
+0src/main/java/com/example/springmvc/Student.java,f/e/fea3a418c9818b326113f080af77a1c2c63a2900
+j
+:src/main/java/com/example/springmvc/StudentController.java,5/f/5f67aeddbc325a27d4d9957c4434b9a60416608e
+e
+5src/main/webapp/WEB-INF/view/student-confirmation.jsp,4/1/416202241f58142112a8f9d584ceabd8fdc536a0
+]
+-src/main/webapp/WEB-INF/view/student-form.jsp,0/e/0eb670f9b16e23f0d81306f45e7c9c981a4e630a
+`
+0src/main/webapp/WEB-INF/view/helloworld-form.jsp,a/f/af3f259e9193b1fdbde69ab492f79e805b9bc3bd
+[
++src/main/webapp/WEB-INF/view/helloworld.jsp,8/c/8cd1668f40a2b6e1a049eac3f450590343b7a053
+h
+8src/main/java/com/example/springmvc/SillyController.java,b/e/bec283e6251b7fa8e5abaeef2d54d6aa7fd85b00
+^
+.src/main/webapp/WEB-INF/applicationContext.xml,0/9/098550351661f776bec95040b2d50042c4599987
+O
+src/main/webapp/WEB-INF/web.xml,2/e/2e22b6edd746fa3dc40ad7276c87c8d87d72a392
+m
+=src/main/java/com/example/springmvc/HelloWorldController.java,0/f/0f4fab3f5fb20c5a3aea3d313b6abdabf0c4a68f
+Z
+*src/main/webapp/WEB-INF/view/main-menu.jsp,3/8/38ad2c32d711f144bf7f7b487adde6857db0e072
+7
+pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec

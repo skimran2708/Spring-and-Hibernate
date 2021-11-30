@@ -1,0 +1,5 @@
+com.example.springmvc.CustomerController=org.springframework.stereotype.Component
+com.example.springmvc.HelloWorldController=org.springframework.stereotype.Component
+com.example.springmvc.HomeController=org.springframework.stereotype.Component
+com.example.springmvc.SillyController=org.springframework.stereotype.Component
+com.example.springmvc.StudentController=org.springframework.stereotype.Component

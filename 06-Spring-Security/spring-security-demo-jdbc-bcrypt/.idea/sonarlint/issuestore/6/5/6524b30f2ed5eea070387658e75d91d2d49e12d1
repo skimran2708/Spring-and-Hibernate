@@ -1,0 +1,4 @@
+
+g	java:S1125"FDefine and throw a dedicated exception instead of using a generic one.(×¡ûÊÿÿÿÿÿ8Í«È™Ö/
+„
+java:S1488_"bImmediately return this expression instead of assigning it to the temporary variable "intPropVal".(ª²ºÍûÿÿÿÿ8­¬È™Ö/

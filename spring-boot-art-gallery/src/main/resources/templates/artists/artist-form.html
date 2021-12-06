@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Save Artist</title>
+
+    <style>
+        .error {
+            color:red;
+            }
+    </style>
+</head>
+
+<header>
+    <!-- Add a logout button -->
+    <div class="row">
+        <div class="col-sm-11"></div>
+        <div class="col-sm-1">
+            <form th:action="@{/logout}"
+                  method="POST">
+
+                <input type="submit" value="Logout" />
+
+            </form>
+        </div>
+    </div>
+    <hr>
+</header>
+
+<body>
+
+<div class="container">
+
+    <h3>Artist Details</h3>
+    <hr>
+
+    <p class="h4 mb-4">Save Artist</p>
+
+    <form action="#" th:action="@{/artists/save}"
+          th:object="${artist}" method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group">
+        <input type="text" th:field="*{firstName}"
+               class="form-control mb-4 col-4" placeholder="First name">
+            <p th:if="${#fields.hasErrors('firstName')}" th:errorclass="error" th:errors="*{firstName}" />
+        </div>
+
+        <div class="form-group">
+        <input type="text" th:field="*{lastName}"
+               class="form-control mb-4 col-4" placeholder="Last name">
+            <p th:if="${#fields.hasErrors('lastName')}" th:errorclass="error" th:errors="*{lastName}" />
+        </div>
+
+        <div class="form-group">
+        <input type="text" th:field="*{email}"
+               class="form-control mb-4 col-4" placeholder="Email">
+            <p th:if="${#fields.hasErrors('email')}" th:errorclass="error" th:errors="*{email}" />
+        </div>
+
+        <div class="form-group">
+            <input type="text" th:field="*{age}"
+               class="form-control mb-4 col-4" placeholder="Age">
+            <p th:if="${#fields.hasErrors('age')}" th:errorclass="error" th:errors="*{age}" />
+        </div>
+
+        <div class="form-group">
+        <input type="text" th:field="*{birthPlace}"
+               class="form-control mb-4 col-4" placeholder="Birth Place">
+            <p th:if="${#fields.hasErrors('birthPlace')}" th:errorclass="error" th:errors="*{birthPlace}" />
+        </div>
+
+        <div class="form-group">
+        <select name="artStyle" th:field="*{artStyle}" class="form-control mb-4 col-4">
+            <option th:each="artStyle : ${artStyleList}"
+                    th:value="${artStyle}"
+                    th:text="${artStyle}"
+            />
+        </select>
+            <p th:if="${#fields.hasErrors('artStyle')}" th:errorclass="error" th:errors="*{artStyle}" />
+        </div>
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/artists/list}">Back to Artists List</a>
+
+</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+

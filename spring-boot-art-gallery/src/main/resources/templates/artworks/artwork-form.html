@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Save Artwork</title>
+
+    <style>
+        .error {
+            color:red;
+            }
+    </style>
+</head>
+<header>
+    <!-- Add a logout button -->
+    <div class="row">
+        <div class="col-sm-11"></div>
+        <div class="col-sm-1">
+            <form th:action="@{/logout}"
+                  method="POST">
+
+                <input type="submit" value="Logout" />
+
+            </form>
+        </div>
+    </div>
+    <hr>
+</header>
+
+<body>
+
+<div class="container">
+
+    <h3>Artwork Details</h3>
+    <hr>
+
+    <form action="#" th:action="@{/artworks/save(artistId=${artistId})}"
+          th:object="${artwork}" method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{id}" />
+
+        <input type="text" th:field="*{title}"
+               class="form-control mb-4 col-4" placeholder="Title">
+        <p th:if="${#fields.hasErrors('title')}" th:errorclass="error" th:errors="*{title}" />
+
+        <input type="text" th:field="*{year}"
+               class="form-control mb-4 col-4" placeholder="Year">
+        <p th:if="${#fields.hasErrors('year')}" th:errorclass="error" th:errors="*{year}" />
+
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/artworks/list(artistId=${artistId})}">Back to Artists List</a>
+
+</div>
+</body>
+
+</html>

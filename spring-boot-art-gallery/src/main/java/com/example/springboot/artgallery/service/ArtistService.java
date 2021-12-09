@@ -1,19 +1,18 @@
 package com.example.springboot.artgallery.service;
 
 import com.example.springboot.artgallery.entity.Artist;
-import com.example.springboot.artgallery.entity.Users;
 
 import java.util.List;
 
 public interface ArtistService {
 
-    public List<Artist> findAll();
+    public List<Artist> findAllArtists();
 
-    public Artist findById(int theId);
+    public Artist findArtistById(int theId);
 
-    public Artist findByEmail(String theUsername);
+    public Artist findArtistByEmail(String theUsername);
 
-    public void save(Artist theArtist);
+    public void saveArtist(Artist theArtist);
 
-    public void deleteById(int theId);
+    public void deleteArtistById(int theId);
 }

@@ -2,6 +2,7 @@ package com.example.springboot.artgallery.service;
 
 import com.example.springboot.artgallery.dao.ArtworkRepository;
 import com.example.springboot.artgallery.entity.Artwork;
+import com.example.springboot.artgallery.exception.MyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class ArtworkServiceImpl implements ArtworkService {
     }
 
     @Override
-    public Artwork findById(int theId) {
+    public Artwork findArtworkById(int theId) {
         Optional<Artwork> result = artworkRepository.findById(theId);
 
         Artwork theArtwork = null;
@@ -27,19 +28,19 @@ public class ArtworkServiceImpl implements ArtworkService {
         }
         else {
             // we didn't find the artwork
-            throw new RuntimeException("Did not find Artwork id - " + theId);
+            throw new MyException("Did not find Artwork id - " + theId);
         }
 
         return theArtwork;
     }
 
     @Override
-    public void save(Artwork theArtwork) {
+    public void saveArtwork(Artwork theArtwork) {
         artworkRepository.save(theArtwork);
     }
 
     @Override
-    public void deleteById(int theId) {
+    public void deleteArtworkById(int theId) {
         artworkRepository.deleteById(theId);
     }
 }

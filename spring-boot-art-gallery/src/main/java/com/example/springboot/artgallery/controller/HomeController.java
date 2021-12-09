@@ -1,12 +1,13 @@
 package com.example.springboot.artgallery.controller;
 
+import com.example.springboot.artgallery.exception.MyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("")
 public class HomeController {
 
     @GetMapping("/loginPage")
@@ -16,23 +17,24 @@ public class HomeController {
 
     }
 
-    // create a mapping for "/hello"
-
+    // create a mapping for "/home"
     @GetMapping("/home")
-    public String sayHello(Model theModel) {
+    public String homePage(Model theModel) {
 
         theModel.addAttribute("theDate", new java.util.Date());
 
-        return "helloworld";
+        return "home-page";
     }
 
     @GetMapping("/error")
     public String error() {
-        return "error";
+        return "error-page";
     }
 
-
-
+    @GetMapping("/access-denied")
+    public String accessDenied() {
+        throw new MyException("Access Denied");
+    }
 
 }
 

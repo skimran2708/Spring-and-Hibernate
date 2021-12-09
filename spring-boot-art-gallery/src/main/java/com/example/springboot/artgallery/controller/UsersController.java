@@ -1,5 +1,7 @@
 package com.example.springboot.artgallery.controller;
 
+import com.example.springboot.artgallery.converter.UsersConverter;
+import com.example.springboot.artgallery.dto.UsersDto;
 import com.example.springboot.artgallery.entity.Artist;
 import com.example.springboot.artgallery.entity.Authorities;
 import com.example.springboot.artgallery.entity.Users;
@@ -18,9 +20,9 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/users")
 public class UsersController {
-    private UsersService usersService;
-    private AuthoritiesService authoritiesService;
-    private ArtistService artistService;
+    private final UsersService usersService;
+    private final AuthoritiesService authoritiesService;
+    private final ArtistService artistService;
 
     @Autowired
     public UsersController(UsersService theUsersService, AuthoritiesService theAuthoritiesService, ArtistService theArtist) {
@@ -41,10 +43,13 @@ public class UsersController {
     }
 
     @PostMapping("/save")
-    public String saveUser(@Valid @ModelAttribute("user") Users theUser, BindingResult bindingResult) {
+    public String saveUser(@Valid @ModelAttribute("user") UsersDto usersDto, BindingResult bindingResult) {
 
         if(bindingResult.hasErrors())
             return "/user-form";
+
+        //convert dto to entity
+        Users theUser = new UsersConverter().dtoToEntity(usersDto);
 
         Authorities theAuthorities = new Authorities();
         theAuthorities.setUsername(theUser.getUsername());
@@ -65,9 +70,9 @@ public class UsersController {
 
         String username = authentication.getName();
         // get the artist from the service
-        Artist theArtist = artistService.findByEmail(username);
+        Artist theArtist = artistService.findArtistByEmail(username);
 
         // send over to our form
-        return "redirect:/artists/showArtistDetails?artistId="+theArtist.getId();
+        return "redirect:/artists/showArtistDetails?artistId=" + theArtist.getId();
     }
 }

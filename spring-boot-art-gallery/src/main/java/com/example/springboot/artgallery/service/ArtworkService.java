@@ -4,9 +4,9 @@ import com.example.springboot.artgallery.entity.Artwork;
 
 public interface ArtworkService {
 
-    public Artwork findById(int theId);
+    public Artwork findArtworkById(int theId);
 
-    public void save(Artwork theArtwork);
+    public void saveArtwork(Artwork theArtwork);
 
-    public void deleteById(int theId);
+    public void deleteArtworkById(int theId);
 }

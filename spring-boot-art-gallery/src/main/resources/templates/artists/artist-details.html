@@ -80,7 +80,7 @@
     <div sec:authorize="hasRole('ARTIST')">
         <!-- Add "art work" button/link -->
         <a th:href="@{/artworks/list(artistId=${param.artistId})}"
-           class="btn btn-info btn-sm">
+           class="btn btn-primary btn-sm">
             View Artworks
         </a>
     </div>

@@ -1,5 +1,6 @@
 package com.example.springboot.artgallery.entity;
 
+import lombok.*;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -9,6 +10,10 @@ import java.util.List;
 
 @Entity
 @Table(name="artist")
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 public class Artist {
 
     // annotate the class as an entity and map to db table
@@ -38,7 +43,7 @@ public class Artist {
     @Column(name="last_name")
     private String lastName;
 
-    @Email(regexp = "^(.+)@(.+)$", message = "Invalid email")
+    @NotEmpty(message = "Email should not be null")
     @Column(name="email", unique = true)
     private String email;
 
@@ -59,8 +64,15 @@ public class Artist {
     @JoinColumn(name = "artist_id")
     private List<Artwork> artworks;
 
-    public Artist() {
 
+    public Artist(int id, String firstName, String lastName, String email, String age, String birthPlace, String artStyle) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.age = age;
+        this.birthPlace = birthPlace;
+        this.artStyle = artStyle;
     }
 
     public Artist(String firstName, String lastName, String email, String age, String birthPlace, String artStyle) {
@@ -71,84 +83,6 @@ public class Artist {
         this.birthPlace = birthPlace;
         this.artStyle = artStyle;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
-
-    public String getBirthPlace() {
-        return birthPlace;
-    }
-
-    public void setBirthPlace(String birthPlace) {
-        this.birthPlace = birthPlace;
-    }
-
-    public String getArtStyle() {
-        return artStyle;
-    }
-
-    public void setArtStyle(String artStyle) {
-        this.artStyle = artStyle;
-    }
-
-    @Override
-    public String toString() {
-        return "Artist{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", age='" + age + '\'' +
-                ", birthPlace='" + birthPlace + '\'' +
-                ", artStyle='" + artStyle + '\'' +
-                '}';
-    }
-
-    public List<Artwork> getArtworks() {
-        return artworks;
-    }
-
-    public void setArtworks(List<Artwork> artworks) {
-        this.artworks = artworks;
-    }
-
 
     // add convenience method
     public void addArtwork(Artwork theArtwork) {

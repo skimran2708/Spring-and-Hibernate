@@ -1,5 +1,6 @@
 package com.example.springboot.artgallery.entity;
 
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
@@ -7,6 +8,10 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="art_work")
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 public class Artwork {
 
     // define our fields
@@ -15,7 +20,7 @@ public class Artwork {
 
     // define getter setters
 
-    // define tostring
+    // define toString
 
     // annotate fields
 
@@ -33,8 +38,11 @@ public class Artwork {
     @Column(name="year")
     private String year;
 
-    public Artwork() {
 
+    public Artwork(int id, String title, String year) {
+        this.id = id;
+        this.title = title;
+        this.year = year;
     }
 
     public Artwork(String title, String year) {
@@ -42,37 +50,4 @@ public class Artwork {
         this.year = year;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Artwork{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", year=" + year +
-                '}';
-    }
 }

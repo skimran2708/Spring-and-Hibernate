@@ -1,5 +1,7 @@
 package com.example.springboot.artgallery.controller;
 
+import com.example.springboot.artgallery.converter.ArtworkConverter;
+import com.example.springboot.artgallery.dto.ArtworkDto;
 import com.example.springboot.artgallery.entity.Artwork;
 import com.example.springboot.artgallery.entity.Artist;
 import com.example.springboot.artgallery.service.ArtworkService;
@@ -16,8 +18,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/artworks")
 public class ArtworkController {
-    private ArtworkService artworkService;
-    private ArtistService artistService;
+    private final ArtworkService artworkService;
+    private final ArtistService artistService;
+
+    static final String VIEW_PAGE="artworks/artwork-form";
 
     @Autowired
     public ArtworkController(ArtworkService theArtworkService, ArtistService theArtistService) {
@@ -32,8 +36,9 @@ public class ArtworkController {
                               Model theModel) {
 
         // get the artwork from the service
-        Artist theArtist = artistService.findById(theArtistId);
+        Artist theArtist = artistService.findArtistById(theArtistId);
         List<Artwork> theArtworks = theArtist.getArtworks();
+
         // set artwork as a model attribute to pre-populate the form
         theModel.addAttribute("artworks", theArtworks);
 
@@ -50,7 +55,7 @@ public class ArtworkController {
         theModel.addAttribute("artwork", theArtwork);
         theModel.addAttribute("artistId",theArtistId);
 
-        return "artworks/artwork-form";
+        return VIEW_PAGE;
     }
 
     @GetMapping("/showFormForUpdate")
@@ -58,38 +63,41 @@ public class ArtworkController {
                                           Model theModel) {
 
         // get the artwork from the service
-        Artwork theArtwork = artworkService.findById(theId);
+        Artwork theArtwork = artworkService.findArtworkById(theId);
 
         // set artist as a model attribute to pre-populate the form
         theModel.addAttribute("artwork", theArtwork);
         theModel.addAttribute("artistId",theArtistId);
 
         // send over to our form
-        return "artworks/artwork-form";
+        return VIEW_PAGE;
     }
 
     @PostMapping("/save")
-    public String save(@RequestParam("artistId") int theArtistId, @Valid @ModelAttribute("artwork") Artwork theArtwork, BindingResult bindingResult) {
+    public String saveArtwork(@RequestParam("artistId") int theArtistId, @Valid @ModelAttribute("artwork") ArtworkDto artworkDto, BindingResult bindingResult) {
 
         // save the artWork
 
         if(bindingResult.hasErrors())
-            return "artworks/artwork-form";
+            return VIEW_PAGE;
 
-        Artist theArtist = artistService.findById(theArtistId);
+        //convert dto to entity
+        Artwork theArtwork = new ArtworkConverter().dtoToEntity(artworkDto);
+
+        Artist theArtist = artistService.findArtistById(theArtistId);
         theArtist.addArtwork(theArtwork);
 
-        artworkService.save(theArtwork);
+        artworkService.saveArtwork(theArtwork);
 
         // use a redirect to prevent duplicate submissions
         return "redirect:/artworks/list?artistId="+theArtistId;
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam("artistId") int theArtistId, @RequestParam("artworkId") int theId) {
+    public String deleteArtwork(@RequestParam("artistId") int theArtistId, @RequestParam("artworkId") int theId) {
 
         // delete the artist
-        artworkService.deleteById(theId);
+        artworkService.deleteArtworkById(theId);
 
         // redirect
         return "redirect:/artworks/list?artistId="+theArtistId;

@@ -2,12 +2,12 @@ package com.example.springboot.artgallery.service;
 
 import com.example.springboot.artgallery.dao.UsersRepository;
 import com.example.springboot.artgallery.entity.Users;
+import com.example.springboot.artgallery.exception.MyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,11 +23,6 @@ public class UsersServiceImpl implements UsersService{
     }
 
     @Override
-    public List<Users> findAll() {
-        return usersRepository.findAll();
-    }
-
-    @Override
     public Users findByUsername(String username) {
         Optional<Users> result = usersRepository.findByUsername(username);
 
@@ -38,7 +33,7 @@ public class UsersServiceImpl implements UsersService{
         }
         else {
             // we didn't find the artist
-            throw new RuntimeException("Did not find User - " + theUser);
+            throw new MyException("Did not find User - " + username);
         }
 
         return theUser;
@@ -48,7 +43,7 @@ public class UsersServiceImpl implements UsersService{
     public void save(Users theUser) {
 
         String encodedPassword = passwordEncoder.encode(theUser.getPassword());
-        theUser.setPassword("{bcrypt}"+encodedPassword);
+        theUser.setPassword(encodedPassword);   //{bcrypt} is added if required
 
         usersRepository.save(theUser);
     }
